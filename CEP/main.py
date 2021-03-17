@@ -36,25 +36,73 @@ import backend
 ## fecha janela
 def exit():
     window.close()
+def exitF():
+    formulario.close()
 
 ## CRIA UMA VARIAVEL GLOBAL E ATRIBUI A ULTIMA PESQUISA FEITA
+
+global xx
+xx = {}
 def getvar(self):
-    global xx
     xx = self
     # return xx
 
 ########## ADICIONA DADOS DO CEP AO BANCO DE DADOS
-def addCep():
+def addForm():
+    dictForm = {
+    'logradouro' : formulario.lineEdit.text(),
+    'complemto' : formulario.lineEdit_2.text(),
+    'bairro' : formulario.lineEdit_3.text(),
+    'aluguel' : formulario.lineEdit_4.text(),
+    'cdCasa' : formulario.lineEdit_5.text(),
+    'dono' : formulario.lineEdit_6.text()
+    }
+
+    formulario.lineEdit.setText('')
+    formulario.lineEdit_2.setText('')
+    formulario.lineEdit_3.setText('')
+    formulario.lineEdit_4.setText('')
+    formulario.lineEdit_5.setText('')
+    formulario.lineEdit_6.setText('')
     d = xx # preguiça d mudar toda lista
-    backend.addCityRec(d['cep'], d['logradouro'], d['complemento'], \
-    d['bairro'], d['localidade'], d['uf'], d['ddd'])
-    print(xx)
+    backend.addCityRec(d['cep'], dictForm['logradouro'], dictForm['complemento'], dictForm['bairro'], \
+        d['localidade'] ,dictForm['aluguel'], dictForm['cdCasa'] ,dictForm['dono'], d['uf'], d['ddd'])
+    for key, value in dictForm.items():
+        print(value, key )
+
+def getLinha():
+    linha = window.lineEdit.text() ## obtem dados do campo de texto
+    linha = linha.strip()
+    window.lineEdit.setText('') ## limpa campo 
+    return linha
+
+def addCep():
+    # print(linha)
+    linha = window.lineEdit.text() ## obtem dados do campo de texto
+    linha = linha.strip()
+    window.lineEdit.setText('')
+    # linha = getLinha
+    if len(linha) == 8:
+        d = backend.lambda_handler(linha)
+        if type(d) == str:
+            window.label_2.setText("Cep inexistente")  ## uso da api para buscar cep 
+        else:
+            data = backend.getInfoByCep(d)
+            print(data)
+            formulario.show()
+            formulario.pushButton.clicked.connect(addForm)
+            formulario.pushButton_2.clicked.connect(exitF)
+        # else:
+        #     window.label_2.setText("por favor, prencher o CEP corretamente")
+    else:
+        window.label_2.setText("Você precisa digitar um cep primeiro")
 
 ## busca o cep e exibe na tabela do layout
 def search(self):
     linha = window.lineEdit.text() ## obtem dados do campo de texto
     linha = linha.strip()
-    window.lineEdit.setText('') ## limpa campo 
+    window.lineEdit.setText('')
+    print(linha)
     if len(linha) == 8:
         d = backend.lambda_handler(linha)  ## uso da api para buscar cep
         if type(d) == str:
@@ -81,9 +129,9 @@ def search(self):
 def showdb(self):
     results = backend.viewDate()
     window.tableWidget.setRowCount(len(results))
-    window.tableWidget.setColumnCount(8)
+    window.tableWidget.setColumnCount(11)
     for i in range(0, len(results)):
-        for j in range(0, 8):
+        for j in range(0, 11):
             window.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(results[i][j])))
 #    self.table.setRowCount(0)
 
@@ -97,7 +145,8 @@ def showdb(self):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = uic.loadUi("dialog.ui")
-    window.setWindowTitle("Programa :3") 
+    window.setWindowTitle("Programa :3")
+    formulario = uic.loadUi("form.ui")
 
     backend.cityData() ## se db não estiver criado, ele cria agora
 #    window.tableWidget.setColumnWidth(0, 40)
@@ -108,7 +157,6 @@ if __name__ == "__main__":
 #    window.tableWidget.setColumnWidth(5, 200)
 #    window.tableWidget.setColumnWidth(6, 40)
 #    window.tableWidget.setColumnWidth(7, 40)
-
 
     window.pushButton.clicked.connect(search)
     window.pushButton_2.clicked.connect(exit)

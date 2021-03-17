@@ -57,9 +57,9 @@ background-color: rgb(85, 255, 127);</string>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>130</y>
-     <width>471</width>
+     <width>671</width>
      <height>111</height>
     </rect>
    </property>
@@ -101,6 +101,21 @@ background-color: rgb(85, 255, 127);</string>
    <column>
     <property name="text">
      <string>Localidade</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Aluguel</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>codigo casa</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Dono</string>
     </property>
    </column>
    <column>

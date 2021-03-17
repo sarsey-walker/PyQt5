@@ -47,6 +47,9 @@ def cityData():
                      complemento TEXT,
                      bairro TEXT NOT NULL,
                      localidade TEXT NOT NULL,
+                     aluguel INTEGER NOT NULL,
+                     cd_casa INTEGER NOT NULL,
+                     dono TEXT NOT NULL,
                      uf CHARACTER(2) NOT NULL,
                      ddd INTEGER NOT NULL
                      );'''
@@ -56,11 +59,11 @@ def cityData():
     conexao.close()
 
 
-def addCityRec(cep, logradouro, complemento, bairro, localidade, uf, ddd):
+def addCityRec(cep, logradouro, complemento, bairro, localidade, aluguel,cd_casa, dono,uf, ddd):
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    comando = ''' INSERT INTO Cidade VALUES(NULL, ?, ?, ?, ?, ?, ?, ?);'''
-    cursor.execute(comando, (cep, logradouro, complemento, bairro, localidade, uf, ddd))
+    comando = ''' INSERT INTO Cidade VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+    cursor.execute(comando, (cep, logradouro, complemento, bairro, localidade, aluguel, cd_casa, dono,  uf, ddd))
     conexao.commit()
     cursor.close()
     conexao.close()
@@ -82,19 +85,19 @@ def deleteRec():
     cursor.close()
     conexao.close()
 
-def searchData(cep="", logradouro="", complemento="", bairro="", localidade="", uf="", ddd=""):
+def searchData(cep="", logradouro="", complemento="", bairro="", localidade="", aluguel="",cd_casa="", dono="", uf="", ddd=""):
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    cursor.execute("SELECTE * FROM Cidade WHERE cep=? OR logradouro=? OR complemento=? OR bairro=? OR localidade=? OR uf=? OR ddd=?", cep, logradouro, complemento, bairro, localidade, uf, ddd)
+    cursor.execute("SELECTE * FROM Cidade WHERE cep=? OR logradouro=? OR complemento=? OR bairro=? OR localidade=? OR aluguel=? OR cd_casa=? OR dono=? OR uf=? OR ddd=?", cep, logradouro, complemento, bairro, localidade, uf, ddd)
     rows = cursor.fetchall()
     cursor.close()
     conexao.close()
     return rows
 
-def updateData(id, cep="", logradouro="", complemento="", bairro="", localidade="", uf="", ddd=""):
+def updateData(id, cep="", logradouro="", complemento="", bairro="", localidade="", aluguel="",cd_casa="", dono="", uf="", ddd=""):
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    cursor.execute("UPDATE Cidade SET cep=? OR logradouro=? OR complemento=? OR bairro=? OR localidade=? OR uf=? OR ddd=? WHERE id=?", cep, logradouro, complemento, bairro, localidade, uf, ddd, id)
+    cursor.execute("UPDATE Cidade SET cep=? OR logradouro=? OR complemento=? OR bairro=? OR localidade=? OR aluguel=? OR cd_casa=? OR dono=? OR uf=? OR ddd=? WHERE id=?", cep, logradouro, complemento, bairro, localidade, uf, ddd, id)
     conexao.commit()
     cursor.close()
     conexao.close()
