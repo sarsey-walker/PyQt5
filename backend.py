@@ -7,11 +7,13 @@ import re
 
 ################## FUNÇÕES PARA USO DA API "VIA CEP"  #######################3
 
+
 def lambda_handler(event):
-    try:
-        return json.loads(urllib.request.urlopen(_get_url_api(event)).read())
-    except:
-        return json.loads("{\"erro\": true, \"mensagem\": \"Formato incorreto\"}")
+    r = json.loads(urllib.request.urlopen(_get_url_api(event)).read())
+    if len(r) < 2:
+        return str(r)
+    else:
+        return r
 
 def _get_url_api(cep):
     return ('http://www.viacep.com.br/ws/{}/json'.format(_replace(cep)))
@@ -19,8 +21,11 @@ def _get_url_api(cep):
 def _replace(str):
     return str.replace("-", "").replace(" ", "")
 
+def _regex(str):
+    return re.match('[0-9]{8}', _replace(str))
+
 def getInfoByCep(cep):
-    d = lambda_handler(cep)
+    d = cep
     dd = {'cep': d['cep'],
         'logradouro': d['logradouro'],
         'complemento': d['complemento'],

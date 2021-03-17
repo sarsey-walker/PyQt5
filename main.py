@@ -37,27 +37,30 @@ def exit():
     window.close()
 
 def principal(self):
-    print("xvxvxvxv")
 
     backend.cityData()
     linha = window.lineEdit.text()
     linha = linha.strip()
     if len(linha) == 8:
-        d = backend.getInfoByCep(linha)
-#        backend.addCityRec(d['cep'], d['logradouro'], d['complemento'], \
-#        d['bairro'], d['localidade'], d['uf'], d['ddd'])
-#        print(d)
-        tablerow = 0
-        i = 0
-        dd = []
-        window.tableWidget.setRowCount(1)
-        window.tableWidget.setColumnCount(8)
-        for key, value in d.items():
-            dd.append(value)
-        for i in range(1, 8):
-            window.tableWidget.setItem(tablerow, i, QtWidgets.QTableWidgetItem(str(dd[i-1])))
+        d = backend.lambda_handler(linha)
+        if type(d) == str:
+            window.label_2.setText("Cep inexistente")
+        else:
+            data = backend.getInfoByCep(d)
+            backend.addCityRec(d['cep'], d['logradouro'], d['complemento'], \
+            d['bairro'], d['localidade'], d['uf'], d['ddd'])
+            print(data)
+            tablerow = 0
+            dd = []
+            window.tableWidget.setRowCount(1)
+            window.tableWidget.setColumnCount(8)
+            window.label_2.setText("Esses sao os dados ")
+            for key, value in data.items():
+                dd.append(value)
+            for i in range(1, 8):
+                window.tableWidget.setItem(tablerow, i, QtWidgets.QTableWidgetItem(str(dd[i-1])))
     else:
-        print('quantidade errada')
+        window.label_2.setText("por favor, prencher o CEP corretamente")
 
 
 #dd = backend.getInfoByCep('32186440')
@@ -75,11 +78,14 @@ def pri(self):
 #        self.table.insetRow(row_number)
 #        for colum_number, data in enumerate(row_data):
 #            self.table.setItem(row_number, colum_number, QtWidgets.QTableWidgetItem(str(data)))
+def addCep():
+    print('xx')
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = uic.loadUi("dialog.ui")
+    window.setWindowTitle("Programa :3")
 
 #    window.tableWidget.setColumnWidth(0, 40)
 #    window.tableWidget.setColumnWidth(1, 100)
@@ -94,5 +100,6 @@ if __name__ == "__main__":
     window.pushButton.clicked.connect(principal)
     window.pushButton_2.clicked.connect(exit)
     window.pushButton_3.clicked.connect(pri)
+    window.pushButton_4.clicked.connect(addCep)
     window.show()
     sys.exit(app.exec_())
