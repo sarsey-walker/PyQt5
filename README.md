@@ -5,4 +5,4 @@ Tentei criar uma aplicação em pyqt5 q faz uso da api 'Via Cep' que pega o CEP 
 A ideia é ciar uma relacionameno entre a auma tabela que contém as cidades pelo CEP e outra com casas disponiveis para alugar na localidade.
 
 ### Realidade
-Consegui a integração com a API(essa foi a minha primeira vez usando uma API -yai- =^.^= ) e exibe ele em uma tabela. Também é possível gravar esses dados numa tabela, (e por emquanto só tem uma e não há botões para tal função) e tbm recupera os dados dessa tabela.
+Consegui a integração com a API(essa foi a minha primeira vez usando uma API -yai- =^.^= ) e exibe ele em uma tabela. Também é possível gravar esses dados numa tabela, e tbm recupera os dados dessa tabela.
