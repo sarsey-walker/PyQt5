@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # This Python file uses the following encoding: utf-8
 
+## @file
+## @author Willam Seite
 ##  Esse codigo é protegido pela comunidade
 ##  de codigo livre pela licença de codigo
 ##  livre GPL3 e por Deus, pois só Deus sabe
