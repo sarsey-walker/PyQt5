@@ -5,10 +5,11 @@ import json
 import urllib.request
 import re
 
+################## FUNÇÕES PARA USO DA API "VIA CEP"  #######################3
+
 def lambda_handler(event):
     try:
         return json.loads(urllib.request.urlopen(_get_url_api(event)).read())
-    # return json.loads(urllib.request.urlopen(_get_url_api(event['cep'])).read())
     except:
         return json.loads("{\"erro\": true, \"mensagem\": \"Formato incorreto\"}")
 
@@ -17,9 +18,6 @@ def _get_url_api(cep):
 
 def _replace(str):
     return str.replace("-", "").replace(" ", "")
-
-def _regex(str):
-    return re.match('[0-9]{8}', _replace(str))
 
 def getInfoByCep(cep):
     d = lambda_handler(cep)
@@ -32,13 +30,11 @@ def getInfoByCep(cep):
         'ddd': d['ddd']}
     return dd
 
-##################################################3333
+#################  FUNÇÕES PARA MANIPULAÇÃO DO BANCO DE DADOS  ###########################
 
 def cityData():
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    ## N SEI MODELAGEM DE BD
-    ### ESSE É O MELHOR Q POSSO FAZER
     comando = '''CREATE TABLE IF NOT EXISTS Cidade(
                      id INTEGER PRIMARY KEY AUTOINCREMENT,
                      cep INTEGER NOT NULL,
@@ -99,6 +95,4 @@ def updateData(id, cep="", logradouro="", complemento="", bairro="", localidade=
     conexao.close()
 
 
-def getcep(v):
-    print(v)
 
