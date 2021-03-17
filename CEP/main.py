@@ -47,7 +47,11 @@ def getvar(self):
     global xx
     xx = self
     # return xx
-
+global cc
+cc = True
+def check(self = False):
+    c = self
+    return c
 ########## ADICIONA DADOS DO CEP AO BANCO DE DADOS
 def addForm():
     dictForm = {
@@ -68,8 +72,8 @@ def addForm():
     d = xx # preguiça d mudar toda lista
     backend.addCityRec(d['cep'], dictForm['logradouro'], dictForm['complemento'], dictForm['bairro'], \
         d['localidade'] ,dictForm['aluguel'], dictForm['cdCasa'] ,dictForm['dono'], d['uf'], d['ddd'])
-    for key, value in dictForm.items():
-        print(value, key )
+    # for key, value in dictForm.items():
+    #     print(value, key )
 
 def getLinha():
     linha = window.lineEdit.text() ## obtem dados do campo de texto
@@ -83,7 +87,7 @@ def addCep():
     linha = linha.strip()
     window.lineEdit.setText('')
     # linha = getLinha
-    di = xx
+    # di = xx
     if len(linha) == 8:
         d = backend.lambda_handler(linha)
         if type(d) == str:
@@ -91,13 +95,13 @@ def addCep():
         else:
             data = backend.getInfoByCep(d)
             getvar(data)
-            print(data)
+            # print(data)
             formulario.show()
             formulario.pushButton.clicked.connect(addForm)
             formulario.pushButton_2.clicked.connect(exitF)
         # else:
         #     window.label_2.setText("por favor, prencher o CEP corretamente")
-    elif len(di) > 2:
+    elif not cc:
             formulario.show()
             formulario.pushButton.clicked.connect(addForm)
             formulario.pushButton_2.clicked.connect(exitF)
@@ -109,14 +113,14 @@ def search(self):
     linha = window.lineEdit.text() ## obtem dados do campo de texto
     linha = linha.strip()
     window.lineEdit.setText('')
-    print(linha)
+    # print(linha)
     if len(linha) == 8:
         d = backend.lambda_handler(linha)  ## uso da api para buscar cep
         if type(d) == str:
             window.label_2.setText("Cep inexistente")
         else:
             data = backend.getInfoByCep(d)
-            print(data)
+            # print(data)
             tablerow = 0
             dd = []
             window.tableWidget.setRowCount(1)
@@ -127,6 +131,7 @@ def search(self):
             for i in range(1, 8):
                 window.tableWidget.setItem(tablerow, i, QtWidgets.QTableWidgetItem(str(dd[i-1])))
             getvar(data)
+            cc = check(True)
             # if 
     else:
         window.label_2.setText("por favor, prencher o CEP corretamente")
