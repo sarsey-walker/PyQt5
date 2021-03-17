@@ -33,22 +33,34 @@ import backend
 #    window.show()
 #    sys.exit(app.exec_())
 
+## fecha janela
 def exit():
     window.close()
 
-def principal(self):
+## CRIA UMA VARIAVEL GLOBAL E ATRIBUI A ULTIMA PESQUISA FEITA
+def getvar(self):
+    global xx
+    xx = self
+    # return xx
 
-    backend.cityData()
-    linha = window.lineEdit.text()
+########## ADICIONA DADOS DO CEP AO BANCO DE DADOS
+def addCep():
+    d = xx # preguiça d mudar toda lista
+    backend.addCityRec(d['cep'], d['logradouro'], d['complemento'], \
+    d['bairro'], d['localidade'], d['uf'], d['ddd'])
+    print(xx)
+
+## busca o cep e exibe na tabela do layout
+def search(self):
+    linha = window.lineEdit.text() ## obtem dados do campo de texto
     linha = linha.strip()
+    window.lineEdit.setText('') ## limpa campo 
     if len(linha) == 8:
-        d = backend.lambda_handler(linha)
+        d = backend.lambda_handler(linha)  ## uso da api para buscar cep
         if type(d) == str:
             window.label_2.setText("Cep inexistente")
         else:
             data = backend.getInfoByCep(d)
-            backend.addCityRec(d['cep'], d['logradouro'], d['complemento'], \
-            d['bairro'], d['localidade'], d['uf'], d['ddd'])
             print(data)
             tablerow = 0
             dd = []
@@ -59,13 +71,14 @@ def principal(self):
                 dd.append(value)
             for i in range(1, 8):
                 window.tableWidget.setItem(tablerow, i, QtWidgets.QTableWidgetItem(str(dd[i-1])))
+            getvar(data)
+            # if 
     else:
         window.label_2.setText("por favor, prencher o CEP corretamente")
 
-
 #dd = backend.getInfoByCep('32186440')
 
-def pri(self):
+def showdb(self):
     results = backend.viewDate()
     window.tableWidget.setRowCount(len(results))
     window.tableWidget.setColumnCount(8)
@@ -78,15 +91,15 @@ def pri(self):
 #        self.table.insetRow(row_number)
 #        for colum_number, data in enumerate(row_data):
 #            self.table.setItem(row_number, colum_number, QtWidgets.QTableWidgetItem(str(data)))
-def addCep():
-    print('xx')
+
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = uic.loadUi("dialog.ui")
-    window.setWindowTitle("Programa :3")
+    window.setWindowTitle("Programa :3") 
 
+    backend.cityData() ## se db não estiver criado, ele cria agora
 #    window.tableWidget.setColumnWidth(0, 40)
 #    window.tableWidget.setColumnWidth(1, 100)
 #    window.tableWidget.setColumnWidth(2, 200)
@@ -97,9 +110,9 @@ if __name__ == "__main__":
 #    window.tableWidget.setColumnWidth(7, 40)
 
 
-    window.pushButton.clicked.connect(principal)
+    window.pushButton.clicked.connect(search)
     window.pushButton_2.clicked.connect(exit)
-    window.pushButton_3.clicked.connect(pri)
+    window.pushButton_3.clicked.connect(showdb)
     window.pushButton_4.clicked.connect(addCep)
     window.show()
     sys.exit(app.exec_())
