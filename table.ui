@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>724</width>
+    <height>312</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(65, 65, 98);</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>671</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 170, 255);</string>
+   </property>
+   <column>
+    <property name="text">
+     <string>id</string>
+    </property>
+    <property name="background">
+     <color>
+      <red>246</red>
+      <green>211</green>
+      <blue>45</blue>
+     </color>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>cep</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>logradouro</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>complemento</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Bairro</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Localidade</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Aluguel</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>codigo casa</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Dono</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>UF</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>DDD</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>252</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 56, 59);</string>
+   </property>
+   <property name="text">
+    <string>Fechar</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>0</y>
+     <width>491</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MS Sans Serif</family>
+     <pointsize>20</pointsize>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="text">
+    <string>Lista de imóveis e suas localidades</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

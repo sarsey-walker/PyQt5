@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
+    <width>596</width>
     <height>380</height>
    </rect>
   </property>
@@ -21,8 +21,8 @@ background-color: rgb(85, 255, 127);</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>30</x>
+     <y>80</y>
      <width>181</width>
      <height>31</height>
     </rect>
@@ -44,8 +44,8 @@ background-color: rgb(85, 255, 127);</string>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>20</y>
+     <x>200</x>
+     <y>80</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -58,9 +58,9 @@ background-color: rgb(85, 255, 127);</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>130</y>
-     <width>671</width>
-     <height>111</height>
+     <y>170</y>
+     <width>561</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -105,21 +105,6 @@ background-color: rgb(85, 255, 127);</string>
    </column>
    <column>
     <property name="text">
-     <string>Aluguel</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>codigo casa</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Dono</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
      <string>UF</string>
     </property>
    </column>
@@ -132,11 +117,21 @@ background-color: rgb(85, 255, 127);</string>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>20</y>
+     <x>340</x>
+     <y>80</y>
      <width>101</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(0, 170, 127);</string>
@@ -148,19 +143,18 @@ background-color: rgb(85, 255, 127);</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>70</y>
-     <width>471</width>
-     <height>31</height>
+     <x>10</x>
+     <y>10</y>
+     <width>581</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font-size:25px;
-color: rgb(170, 0, 0);
-text-align;center;</string>
+color: rgb(0, 85, 127);</string>
    </property>
    <property name="text">
-    <string/>
+    <string>Busque cep antes de poder adcionar uma casa </string>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
@@ -169,11 +163,19 @@ text-align;center;</string>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>330</y>
-     <width>83</width>
-     <height>25</height>
+     <width>101</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
@@ -188,27 +190,47 @@ text-align;center;</string>
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>300</y>
+     <x>260</x>
+     <y>320</y>
      <width>151</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 170, 127);</string>
+   </property>
    <property name="text">
-    <string>Ver dados da tabela</string>
+    <string>Ver banco de dados</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>300</y>
+     <x>430</x>
+     <y>320</y>
      <width>141</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <stylestrategy>PreferDefault</stylestrategy>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 170, 127);</string>
+   </property>
    <property name="text">
-    <string>Add data</string>
+    <string>Adcionar casa</string>
    </property>
   </widget>
  </widget>

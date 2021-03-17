@@ -41,9 +41,10 @@ def exitF():
 
 ## CRIA UMA VARIAVEL GLOBAL E ATRIBUI A ULTIMA PESQUISA FEITA
 
-global xx
-xx = {}
+# global xx
+# xx = {}
 def getvar(self):
+    global xx
     xx = self
     # return xx
 
@@ -51,7 +52,7 @@ def getvar(self):
 def addForm():
     dictForm = {
     'logradouro' : formulario.lineEdit.text(),
-    'complemto' : formulario.lineEdit_2.text(),
+    'complemento' : formulario.lineEdit_2.text(),
     'bairro' : formulario.lineEdit_3.text(),
     'aluguel' : formulario.lineEdit_4.text(),
     'cdCasa' : formulario.lineEdit_5.text(),
@@ -82,18 +83,24 @@ def addCep():
     linha = linha.strip()
     window.lineEdit.setText('')
     # linha = getLinha
+    di = xx
     if len(linha) == 8:
         d = backend.lambda_handler(linha)
         if type(d) == str:
             window.label_2.setText("Cep inexistente")  ## uso da api para buscar cep 
         else:
             data = backend.getInfoByCep(d)
+            getvar(data)
             print(data)
             formulario.show()
             formulario.pushButton.clicked.connect(addForm)
             formulario.pushButton_2.clicked.connect(exitF)
         # else:
         #     window.label_2.setText("por favor, prencher o CEP corretamente")
+    elif len(di) > 2:
+            formulario.show()
+            formulario.pushButton.clicked.connect(addForm)
+            formulario.pushButton_2.clicked.connect(exitF)
     else:
         window.label_2.setText("Você precisa digitar um cep primeiro")
 
@@ -125,14 +132,18 @@ def search(self):
         window.label_2.setText("por favor, prencher o CEP corretamente")
 
 #dd = backend.getInfoByCep('32186440')
-
+def exitT():
+    tabela.close()
+    
 def showdb(self):
+    tabela.show()
     results = backend.viewDate()
-    window.tableWidget.setRowCount(len(results))
-    window.tableWidget.setColumnCount(11)
+    tabela.tableWidget.setRowCount(len(results))
+    tabela.tableWidget.setColumnCount(11)
     for i in range(0, len(results)):
         for j in range(0, 11):
-            window.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(results[i][j])))
+            tabela.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(results[i][j])))
+    tabela.pushButton_2.clicked.connect(exitT)
 #    self.table.setRowCount(0)
 
 #    for row_number, row_data in enumerate(results):
@@ -147,6 +158,7 @@ if __name__ == "__main__":
     window = uic.loadUi("dialog.ui")
     window.setWindowTitle("Programa :3")
     formulario = uic.loadUi("form.ui")
+    tabela = uic.loadUi("table.ui")
 
     backend.cityData() ## se db não estiver criado, ele cria agora
 #    window.tableWidget.setColumnWidth(0, 40)
