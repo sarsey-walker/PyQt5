@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>380</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(119, 118, 123);</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Digite o cep aqui:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(246, 245, 244);</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>90</y>
+     <width>471</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>id</string>
+    </property>
+    <property name="background">
+     <color>
+      <red>246</red>
+      <green>211</green>
+      <blue>45</blue>
+     </color>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>cep</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>logradouro</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>complemento</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Bairro</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Localidade</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>UF</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>DDD</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>130</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>20</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:25px;</string>
+   </property>
+   <property name="text">
+    <string>Cidade:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>310</y>
+     <width>83</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(246, 97, 81);</string>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>300</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ver dados da tabela</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>lineEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>118</x>
+     <y>174</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>258</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>tableWidget</receiver>
+   <slot>resizeColumnsToContents()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>286</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>345</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
