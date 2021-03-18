@@ -81,32 +81,32 @@ def getLinha():
     window.lineEdit.setText('') ## limpa campo 
     return linha
 
-def addCep():
-    # print(linha)
-    linha = window.lineEdit.text() ## obtem dados do campo de texto
-    linha = linha.strip()
-    window.lineEdit.setText('')
-    # linha = getLinha
-    # di = xx
-    if len(linha) == 8:
-        d = backend.lambda_handler(linha)
-        if type(d) == str:
-            window.label_2.setText("Cep inexistente")  ## uso da api para buscar cep 
-        else:
-            data = backend.getInfoByCep(d)
-            getvar(data)
-            # print(data)
-            formulario.show()
-            formulario.pushButton.clicked.connect(addForm)
-            formulario.pushButton_2.clicked.connect(exitF)
-        # else:
-        #     window.label_2.setText("por favor, prencher o CEP corretamente")
-    elif xx:
-            formulario.show()
-            formulario.pushButton.clicked.connect(addForm)
-            formulario.pushButton_2.clicked.connect(exitF)
-    else:
-        window.label_2.setText("Você precisa digitar um cep primeiro")
+# def addCep():
+#     # print(linha)
+#     linha = window.lineEdit.text() ## obtem dados do campo de texto
+#     linha = linha.strip()
+#     window.lineEdit.setText('')
+#     # linha = getLinha
+#     # di = xx
+#     if len(linha) == 8:
+#         d = backend.lambda_handler(linha)
+#         if type(d) == str:
+#             window.label_2.setText("Cep inexistente")  ## uso da api para buscar cep 
+#         else:
+#             data = backend.getInfoByCep(d)
+#             getvar(data)
+#             # print(data)
+#             formulario.show()
+#             formulario.pushButton.clicked.connect(addForm)
+#             formulario.pushButton_2.clicked.connect(exitF)
+#         # else:
+#         #     window.label_2.setText("por favor, prencher o CEP corretamente")
+#     # elif xx:
+#         # formulario.show()
+#         # formulario.pushButton.clicked.connect(addForm)
+#         # formulario.pushButton_2.clicked.connect(exitF)
+#     else:
+#         window.label_2.setText("Você precisa digitar um cep primeiro")
 
 ## busca o cep e exibe na tabela do layout
 def search(self):
@@ -130,7 +130,13 @@ def search(self):
                 dd.append(value)
             for i in range(1, 8):
                 window.tableWidget.setItem(tablerow, i, QtWidgets.QTableWidgetItem(str(dd[i-1])))
-            getvar(data)
+            # getvar(data)
+            # data = backend.getInfoByCep(d)
+            # getvar(data)
+            # print(data)
+            formulario.show()
+            formulario.pushButton.clicked.connect(addForm)
+            formulario.pushButton_2.clicked.connect(exitF)
             cc = check(True)
             # if 
     else:
@@ -172,6 +178,7 @@ if __name__ == "__main__":
     window.setWindowTitle("Programa :3")
     formulario = uic.loadUi("form.ui")
     tabela = uic.loadUi("table.ui")
+    editar = uic.loadUi("edit.ui")
 
     backend.cityData() ## se db não estiver criado, ele cria agora
 #    window.tableWidget.setColumnWidth(0, 40)
@@ -183,9 +190,9 @@ if __name__ == "__main__":
 #    window.tableWidget.setColumnWidth(6, 40)
 #    window.tableWidget.setColumnWidth(7, 40)
 
-    window.pushButton.clicked.connect(search)
+    # window.pushButton.clicked.connect(search)
     window.pushButton_2.clicked.connect(exit)
     window.pushButton_3.clicked.connect(showdb)
-    window.pushButton_4.clicked.connect(addCep)
+    window.pushButton_4.clicked.connect(search)
     window.show()
     sys.exit(app.exec_())
