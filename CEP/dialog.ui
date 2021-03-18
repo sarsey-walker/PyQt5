@@ -154,7 +154,7 @@ background-color: rgb(85, 255, 127);</string>
 color: rgb(0, 85, 127);</string>
    </property>
    <property name="text">
-    <string>Busque cep antes de poder adcionar uma casa </string>
+    <string>Busque o CEP antes de poder adcionar uma casa </string>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>

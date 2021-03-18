@@ -101,7 +101,7 @@ def addCep():
             formulario.pushButton_2.clicked.connect(exitF)
         # else:
         #     window.label_2.setText("por favor, prencher o CEP corretamente")
-    elif not cc:
+    elif xx:
             formulario.show()
             formulario.pushButton.clicked.connect(addForm)
             formulario.pushButton_2.clicked.connect(exitF)
@@ -139,6 +139,13 @@ def search(self):
 #dd = backend.getInfoByCep('32186440')
 def exitT():
     tabela.close()
+
+def deleteD():
+    linha = tabela.tableWidget.currentRow()
+    tabela.tableWidget.removeRow(linha)
+    ids = backend.knowId()
+    id = ids[linha][0]
+    backend.deleteRec(id)
     
 def showdb(self):
     tabela.show()
@@ -149,6 +156,7 @@ def showdb(self):
         for j in range(0, 11):
             tabela.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(results[i][j])))
     tabela.pushButton_2.clicked.connect(exitT)
+    tabela.pushButton_3.clicked.connect(deleteD)
 #    self.table.setRowCount(0)
 
 #    for row_number, row_data in enumerate(results):

@@ -77,10 +77,20 @@ def viewDate():
     conexao.close()
     return rows
 
-def deleteRec():
+def knowId():
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    cursor.execute("DELETE FROM Cidade WHERE id=?", (id))
+    cursor.execute("SELECT id FROM Cidade")
+    rows = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    return rows
+
+
+def deleteRec(id):
+    conexao = conector.connect("meu_banco.db")
+    cursor = conexao.cursor()
+    cursor.execute("DELETE FROM Cidade WHERE id=?", str(id))
     conexao.commit()
     cursor.close()
     conexao.close()
