@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>724</width>
-    <height>312</height>
+    <height>406</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -94,8 +94,8 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>260</y>
+     <x>260</x>
+     <y>350</y>
      <width>151</width>
      <height>41</height>
     </rect>
@@ -165,12 +165,36 @@
     <rect>
      <x>210</x>
      <y>272</y>
-     <width>241</width>
+     <width>291</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Para excluir um dado, basta selecionar uma linha</string>
+    <string>Para excluir ou editar um dado, basta selecionar uma linha</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>260</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 56, 59);</string>
+   </property>
+   <property name="text">
+    <string>Editar</string>
    </property>
   </widget>
  </widget>

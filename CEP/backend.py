@@ -86,6 +86,15 @@ def knowId():
     conexao.close()
     return rows
 
+def row(id):
+    conexao = conector.connect("meu_banco.db")
+    cursor = conexao.cursor()
+    cursor.execute("SELECT * FROM Cidade WHERE id=?", str(id))
+    rows = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    return rows
+
 
 def deleteRec(id):
     conexao = conector.connect("meu_banco.db")
@@ -107,7 +116,7 @@ def searchData(cep="", logradouro="", complemento="", bairro="", localidade="", 
 def updateData(id, cep="", logradouro="", complemento="", bairro="", localidade="", aluguel="",cd_casa="", dono="", uf="", ddd=""):
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    cursor.execute("UPDATE Cidade SET cep=? OR logradouro=? OR complemento=? OR bairro=? OR localidade=? OR aluguel=? OR cd_casa=? OR dono=? OR uf=? OR ddd=? WHERE id=?", cep, logradouro, complemento, bairro, localidade, uf, ddd, id)
+    cursor.execute("UPDATE Cidade SET cep=?, logradouro=? , complemento=? , bairro=? , localidade=? , aluguel=? , cd_casa=? , dono=? , uf=? , ddd=? WHERE id=?", (cep, logradouro, complemento, bairro, localidade, aluguel, cd_casa, dono, uf, ddd, id))
     conexao.commit()
     cursor.close()
     conexao.close()

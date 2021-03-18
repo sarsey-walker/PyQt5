@@ -80,7 +80,9 @@ def getLinha():
     linha = linha.strip()
     window.lineEdit.setText('') ## limpa campo 
     return linha
-
+### A FUNÇÃO ABAIXO FAZIA A BSUCA DO CEP E EXIBIA NA TABELA 
+### PERCEBI QUE ELA ERA INUTIL. 
+### VOU DEIXAR  CODIGO AQUI POR QUANTO, TALVEZ DEPOIS EU O REMOVO
 # def addCep():
 #     # print(linha)
 #     linha = window.lineEdit.text() ## obtem dados do campo de texto
@@ -145,6 +147,8 @@ def search(self):
 #dd = backend.getInfoByCep('32186440')
 def exitT():
     tabela.close()
+def exitTt():
+    editar.close()
 
 def deleteD():
     linha = tabela.tableWidget.currentRow()
@@ -152,8 +156,46 @@ def deleteD():
     ids = backend.knowId()
     id = ids[linha][0]
     backend.deleteRec(id)
-    
-def showdb(self):
+
+def saveEdit():
+    id = editar.lineEdit.text()
+    cep = editar.lineEdit_2.text()
+    logr = editar.lineEdit_3.text()
+    comp = editar.lineEdit_4.text()
+    bairro = editar.lineEdit_5.text()
+    localidade = editar.lineEdit_6.text()
+    aluguel = editar.lineEdit_7.text()
+    codcasa = editar.lineEdit_8.text()
+    dono = editar.lineEdit_9.text()
+    uf = editar.lineEdit_10.text()
+    ddd = editar.lineEdit_11.text()
+    print(id)
+    backend.updateData(id, cep, logr, comp, bairro, localidade, aluguel, codcasa, dono, uf, ddd )
+    showdb()
+    editar.close()
+
+def editData():
+    linha = tabela.tableWidget.currentRow()
+    ids = backend.knowId()
+    id = ids[linha][0]
+    casa = backend.row(id)
+    editar.lineEdit.setText(str(casa[0][0]))
+    editar.lineEdit_2.setText(str(casa[0][1]))
+    editar.lineEdit_3.setText(str(casa[0][2]))
+    editar.lineEdit_4.setText(str(casa[0][3]))
+    editar.lineEdit_5.setText(str(casa[0][4]))
+    editar.lineEdit_6.setText(str(casa[0][5]))
+    editar.lineEdit_7.setText(str(casa[0][6]))
+    editar.lineEdit_8.setText(str(casa[0][7]))
+    editar.lineEdit_9.setText(str(casa[0][8]))
+    editar.lineEdit_10.setText(str(casa[0][9]))
+    editar.lineEdit_11.setText(str(casa[0][10]))
+    editar.show()
+    # print(casa)
+    editar.pushButton.clicked.connect(saveEdit)
+    editar.pushButton_2.clicked.connect(exitTt)
+
+def showdb():
     tabela.show()
     results = backend.viewDate()
     tabela.tableWidget.setRowCount(len(results))
@@ -163,6 +205,7 @@ def showdb(self):
             tabela.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(results[i][j])))
     tabela.pushButton_2.clicked.connect(exitT)
     tabela.pushButton_3.clicked.connect(deleteD)
+    tabela.pushButton_4.clicked.connect(editData)
 #    self.table.setRowCount(0)
 
 #    for row_number, row_data in enumerate(results):
