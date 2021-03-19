@@ -55,29 +55,20 @@ background-color: rgb(85, 255, 127);</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>170</y>
-     <width>561</width>
-     <height>91</height>
+     <x>50</x>
+     <y>160</y>
+     <width>501</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(170, 170, 255);</string>
    </property>
-   <column>
-    <property name="text">
-     <string>id</string>
-    </property>
-    <property name="background">
-     <color>
-      <red>246</red>
-      <green>211</green>
-      <blue>45</blue>
-     </color>
-    </property>
-   </column>
    <column>
     <property name="text">
      <string>cep</string>

@@ -89,7 +89,7 @@ def knowId():
 def row(id):
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    cursor.execute("SELECT * FROM Cidade WHERE id=?", str(id))
+    cursor.execute("SELECT * FROM Cidade WHERE id=?", [id])
     rows = cursor.fetchall()
     cursor.close()
     conexao.close()
@@ -99,7 +99,7 @@ def row(id):
 def deleteRec(id):
     conexao = conector.connect("meu_banco.db")
     cursor = conexao.cursor()
-    cursor.execute("DELETE FROM Cidade WHERE id=?", str(id))
+    cursor.execute("DELETE FROM Cidade WHERE id=?", [id])
     conexao.commit()
     cursor.close()
     conexao.close()
